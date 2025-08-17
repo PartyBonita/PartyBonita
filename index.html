@@ -16,10 +16,10 @@
       margin:0; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans SC","PingFang SC",sans-serif;
       color:#333; line-height:1.6; position:relative; background:#fff;
     }
-    /* 背景图：使用仓库里的 bg.jpg */
+    /* 背景图：使用 assets/bg.jpg（相对路径，适配项目站点） */
     body::before{
       content:""; position:fixed; inset:0; z-index:-2;
-      background-image:url('bg.jpg');
+      background-image:url('assets/bg.jpg');
       background-size:cover; background-position:center; filter:blur(1px) saturate(0.9);
       opacity:.18;
     }
@@ -54,7 +54,7 @@
   </style>
 </head>
 <body>
-  <header>
+  <header class="container">
     <h1 class="logo">PartyBonita</h1>
     <p class="tagline">Todos para celebrar y regalar , en un solo lugar .</p>
   </header>
@@ -63,19 +63,19 @@
     <!-- 气球分类 -->
     <section>
       <h2>🎈 Globos</h2>
-      <img src="balloons-01.jpg" alt="Globos" />
+      <img src="assets/balloons-01.jpg" alt="Globos" />
     </section>
 
     <!-- 玩偶分类 -->
     <section>
       <h2>🧸 Juguetes</h2>
-      <img src="kitty-01.jpg" alt="Hello Kitty" />
+      <img src="assets/kitty-01.jpg" alt="Hello Kitty" />
     </section>
 
     <!-- 书包分类 -->
     <section>
       <h2>🎒 Mochilas</h2>
-      <img src="backpack-01.jpg" alt="Mochila" />
+      <img src="assets/backpack-01.jpg" alt="Mochila" />
     </section>
   </main>
 
