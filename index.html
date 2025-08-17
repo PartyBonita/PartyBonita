@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PartyBonita</title>
+  <meta name="description" content="PartyBonita · Globos, juguetes y mochilas. Una tienda confiable para celebrar y regalar en CDMX." />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="PartyBonita" />
+  <meta property="og:description" content="Todos para celebrar y regalar, en un solo lugar." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://partybonita.github.io/PartyBonita/" />
+  <meta property="og:image" content="https://partybonita.github.io/PartyBonita/assets/og-cover.jpg" />
+  <link rel="icon" href="assets/favicon.png" />
   <style>
     body {
       margin: 0;
@@ -111,9 +119,35 @@
 
     /* 调整：第一张（Globos）更小的上限 */
     .img-globos { max-width: 420px; }
+  /* 顶部导航（更专业的企业感） */
+    .topbar{ position: sticky; top:0; z-index:20; backdrop-filter: saturate(1.1) blur(4px); background: rgba(255,255,255,0.7); border-bottom:1px solid rgba(0,0,0,.06); }
+    .topbar-inner{ max-width: var(--maxw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 16px; }
+    .brand{ font-weight:900; letter-spacing:.3px; font-size:20px; background: linear-gradient(135deg,#ff6ec4,#7873f5,#4ade80); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+    .nav-actions{ display:flex; gap:10px; }
+    .btn{ display:inline-block; padding:10px 16px; border-radius:12px; border:1px solid #d0d7ff; background:#eef2ff; font-weight:700; text-decoration:none; }
+    .btn.primary{ background:#7c3aed; color:#fff; border-color:#7c3aed; }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+
+    /* 信任徽章 */
+    .badges{ display:grid; gap:10px; grid-template-columns: 1fr; max-width:1000px; margin: 0 auto 18px; }
+    @media (min-width: 720px){ .badges{ grid-template-columns: repeat(3,1fr); } }
+    .badge{ display:flex; align-items:center; gap:10px; background: rgba(255,255,255,.72); border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:10px 12px; box-shadow:0 3px 10px rgba(0,0,0,.05); }
+    .badge svg{ flex:0 0 auto; }
+
+    /* 现有按钮、卡片样式保留 */
   </style>
 </head>
 <body>
+  <!-- 顶部导航：品牌 + 快捷动作（WhatsApp / Catálogo） -->
+  <div class="topbar" role="navigation" aria-label="Main navigation">
+    <div class="topbar-inner">
+      <div class="brand">PartyBonita</div>
+      <div class="nav-actions">
+        <a class="btn" href="#catalogo">Catálogo</a>
+        <a class="btn primary" href="https://wa.me/525512345678" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
+      </div>
+    </div>
+  </div>
   <header>
     <h1>PartyBonita</h1>
     <p class="tagline">Todos para celebrar y regalar , en un solo lugar .</p>
@@ -121,7 +155,18 @@
     <a class="btn primary" href="#catalogo">Ver catálogo</a>
     <a class="btn" href="https://wa.me/525512345678" target="_blank" rel="noopener">WhatsApp</a>
   </div>
+  <div class="cta-bar">
+    <a class="btn primary" href="#catalogo">Ver catálogo</a>
+    <a class="btn" href="https://wa.me/525512345678" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
 </header>
+
+<!-- 信任徽章：小公司专业感的关键信号 -->
+<section class="badges" aria-label="Trust badges">
+  <div class="badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.5 4.5L18 22l-6-3.5L6 22l1.5-8.5L2 9h7l3-7z" fill="#7c3aed"/></svg><strong>Envíos en CDMX</strong><span style="color:#666;margin-left:4px;">当日/次日可达</span></div>
+  <div class="badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 4v6c0 5-4 7-9 8-5-1-9-3-9-8V7l9-4z" stroke="#7c3aed"/></svg><strong>Pago seguro</strong><span style="color:#666;margin-left:4px;">转账 / 现金 / 支付链接</span></div>
+  <div class="badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 8h18M7 8v10m10-10v10M5 18h14" stroke="#7c3aed"/></svg><strong>Atención personalizada</strong><span style="color:#666;margin-left:4px;">一对一选品</span></div>
+</section>
 
 <section class="container" style="max-width:1000px; margin: 0 auto 24px; background: rgba(255,255,255,0.66); border:1px solid rgba(0,0,0,.06); border-radius:16px; padding:18px;">
   <h2 style="text-align:center; margin:6px 0 6px;">Sobre nosotros · 关于我们</h2>
@@ -157,7 +202,32 @@
     <p><strong>Tel / WhatsApp:</strong> +52 55 1234 5678</p>
     <p><strong>Email:</strong> hola@partybonita.com</p>
     <p><strong>Dirección:</strong> Av. Insurgentes Sur 1234, Col. Del Valle, Benito Juárez, Ciudad de México, 03100</p>
+    <h2 id="catalogo" style="margin-top:0;">Catálogo</h2>
+    <p>预留产品目录入口。把 <code>catalogo.pdf</code> 上传到仓库根目录后，修改按钮链接即可。</p>
+    <p><a class="btn" href="#" id="catalogo-link">Ver Catálogo</a></p>
   </footer>
+
+  <!-- 结构化数据：提升在搜索中的专业形象（可按需改真实信息） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "PartyBonita",
+    "url": "https://partybonita.github.io/PartyBonita/",
+    "telephone": "+52 55 1234 5678",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Insurgentes Sur 1234, Col. Del Valle",
+      "addressLocality": "Benito Juárez",
+      "addressRegion": "CDMX",
+      "postalCode": "03100",
+      "addressCountry": "MX"
+    },
+    "sameAs": [
+      "https://wa.me/525512345678"
+    ]
+  }
+  </script>
 
   <!-- WhatsApp 悬浮按钮：点击直达（请把号码替换为你的真实号码） -->
   <a class="whatsapp-fab" href="https://wa.me/525512345678" target="_blank" aria-label="Chat on WhatsApp" rel="noopener">
