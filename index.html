@@ -5,77 +5,107 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PartyBonita</title>
   <style>
-    :root{
-      --maxw: 1200px;
-      --tagline-color: #7c3aed; /* 标语颜色：紫色 */
-      --bg-overlay: rgba(255,255,255,.78); /* 背景图上方的柔和白色薄纱 */
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
     }
-    *{ box-sizing: border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans SC","PingFang SC",sans-serif;
-      color:#333; line-height:1.6; position:relative; background:#fff;
+    /* 背景图：使用第三张节日背景图 */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image: url('assets/bg.jpg'); /* 将你选的背景图保存为 /assets/bg.jpg */
+      background-size: cover;
+      background-position: center;
+      filter: blur(1px) saturate(0.9);
+      opacity: 0.16;
     }
-    /* 背景图：使用 assets/bg.jpg（相对路径，适配项目站点） */
-    body::before{
-      content:""; position:fixed; inset:0; z-index:-2;
-      background-image:url('assets/bg.jpg');
-      background-size:cover; background-position:center; filter:blur(1px) saturate(0.9);
-      opacity:.18;
-    }
-    body::after{
-      content:""; position:fixed; inset:0; z-index:-1; background: var(--bg-overlay);
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: rgba(255,255,255,0.82);
     }
 
-    .container{ max-width: var(--maxw); margin:0 auto; padding: 0 20px; }
-
-    header{ padding: 64px 20px 16px; text-align:center; }
-    .logo{
-      font-size: clamp(42px, 6vw, 86px);
-      font-weight: 900; letter-spacing: .5px; margin:0;
+    header {
+      text-align: center;
+      padding: 60px 20px 20px;
+    }
+    header h1 {
+      font-size: clamp(42px, 6vw, 80px);
+      margin: 0;
+      font-weight: 900;
       background: linear-gradient(135deg,#ff6ec4, #7873f5, #4ade80);
-      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
-      text-shadow: 0 2px 0 rgba(255,255,255,.35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-
-    .tagline{
-      margin: 14px auto 28px; text-align:center; font-size: clamp(18px,2.2vw,26px);
-      color: var(--tagline-color); font-weight: 600; padding: 6px 10px; display:inline-block;
-      background: rgba(255,255,255,.6); border:1px solid rgba(0,0,0,.06); border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    .tagline {
+      font-size: 24px;
+      color: #7c3aed; /* 紫色标语 */
+      margin: 20px 0 40px;
+      font-weight: 600;
     }
-
-    section{ margin-bottom: 60px; background: rgba(255,255,255,0.8); border-radius: 16px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-    section h2{ text-align:center; margin-top:0; color:#333; }
-    section img{ display:block; max-width:100%; margin:0 auto; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,0.1); }
-
-    footer{ text-align:center; padding:40px 20px; background: rgba(255,255,255,0.85); border-top:1px solid rgba(0,0,0,.08); }
-    footer h2{ margin-top:0; }
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 60px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    section h2 {
+      text-align: center;
+      margin-top: 0;
+      color: #333;
+    }
+    section img {
+      display: block;
+      max-width: 100%;
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(255,255,255,0.9);
+    }
+    footer h2 {
+      margin-top: 0;
+    }
   </style>
 </head>
 <body>
-  <header class="container">
-    <h1 class="logo">PartyBonita</h1>
+  <header>
+    <h1>PartyBonita</h1>
     <p class="tagline">Todos para celebrar y regalar , en un solo lugar .</p>
   </header>
 
-  <main class="container">
-    <!-- 气球分类 -->
+  <main>
+    <!-- 气球分类：选用第三张气球图 -->
     <section>
       <h2>🎈 Globos</h2>
-      <img src="assets/balloons-01.jpg" alt="Globos" />
+      <img src="assets/balloons-01.jpg" alt="Globos" /> <!-- 将气球图保存为 /assets/balloons-01.jpg -->
     </section>
 
-    <!-- 玩偶分类 -->
+    <!-- 玩偶分类：Hello Kitty 第二张 -->
     <section>
       <h2>🧸 Juguetes</h2>
-      <img src="assets/kitty-01.jpg" alt="Hello Kitty" />
+      <img src="assets/kitty-01.jpg" alt="Hello Kitty" /> <!-- 将 Hello Kitty 图保存为 /assets/kitty-01.jpg；建议用你自己的产品照，避免第三方站点屏蔽外链 -->
     </section>
 
-    <!-- 书包分类 -->
+    <!-- 书包分类：第一张 -->
     <section>
       <h2>🎒 Mochilas</h2>
-      <img src="assets/backpack-01.jpg" alt="Mochila" />
+      <img src="assets/backpack-01.jpg" alt="Mochila" /> <!-- 将书包图保存为 /assets/backpack-01.jpg -->
     </section>
   </main>
 
