@@ -26,20 +26,20 @@
       margin:0; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
       color: var(--ink); line-height:1.65; background:#fff; position:relative;
     }
-    /* Hero background: clearer but not distracting */
     body::before{
       content:""; position:fixed; inset:0; z-index:-2;
       background-image:url('assets/bg.jpg');
       background-size:cover; background-position:center; filter: blur(.5px) saturate(.95);
-      opacity:.38; /* clearer background */
+      opacity:.38;
     }
-    /* Soft veil for readability */
     body::after{ content:""; position:fixed; inset:0; z-index:-1; background: linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.78) 35%, rgba(255,255,255,.86)); }
 
     /* Topbar */
     .topbar{ position: sticky; top:0; z-index:20; backdrop-filter: saturate(1.1) blur(4px); background: rgba(255,255,255,0.82); border-bottom:1px solid rgba(0,0,0,.06); }
     .topbar-inner{ max-width: var(--maxw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 16px; }
-    .brand{ font-weight:900; letter-spacing:.3px; font-size:20px; background: linear-gradient(135deg,#ff6ec4,#7873f5,#4ade80); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+    .brand{ display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .brand img{ height:32px; width:auto; display:block; }
+    .brand span{ font-weight:900; letter-spacing:.3px; font-size:20px; background: linear-gradient(135deg,#ff6ec4,#7873f5,#4ade80); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
     .nav-actions{ display:flex; gap:10px; }
     .btn{ display:inline-block; padding:10px 16px; border-radius:12px; border:1px solid #d0d7ff; background:#eef2ff; font-weight:700; text-decoration:none; color:#1f2937; transition: transform .12s ease, box-shadow .2s ease; }
     .btn.primary{ background:var(--brand); color:#fff; border-color:var(--brand); }
@@ -88,7 +88,10 @@
   <!-- Topbar -->
   <div class="topbar" role="navigation" aria-label="Main navigation">
     <div class="topbar-inner">
-      <div class="brand">PartyBonita</div>
+      <a href="/" class="brand">
+        <img src="assets/logo.png" alt="PartyBonita Logo" />
+        <span>PartyBonita</span>
+      </a>
       <div class="nav-actions">
         <a class="btn" href="#catalogo">Catálogo</a>
         <a class="btn primary" href="https://wa.me/525512345678" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
@@ -97,6 +100,7 @@
   </div>
 
   <header class="container" role="banner">
+    <img src="assets/logo.png" alt="PartyBonita Logo" style="max-width:120px; margin:0 auto 10px; display:block;" />
     <h1 class="logo">PartyBonita</h1>
     <p class="tagline">Todos para celebrar y regalar , en un solo lugar .</p>
     <div class="cta-bar">
@@ -166,7 +170,6 @@
   </a>
 
   <script>
-    // Year in footer
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
