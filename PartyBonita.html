@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PartyBonita</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #fffdfc;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 60px 20px 20px;
+      background: linear-gradient(135deg, #ff6ec4, #7873f5, #4ade80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    header h1 {
+      font-size: 60px;
+      margin: 0;
+      font-weight: 900;
+    }
+    .tagline {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 40px;
+      color: #444;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    footer {
+      margin-top: 60px;
+      background: #f8f8fa;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    footer h2 {
+      margin-top: 0;
+      font-size: 28px;
+      color: #333;
+    }
+    .catalogo {
+      margin-top: 20px;
+    }
+    .catalogo a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #ff6ec4;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    .catalogo a:hover {
+      background: #e055a8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 标题 -->
+  <header>
+    <h1>PartyBonita</h1>
+  </header>
+
+  <!-- 标语 -->
+  <p class="tagline">Todos para celebrar y regalar , en un solo lugar .</p>
+
+  <!-- 图片展示区（示例） -->
+  <section class="gallery">
+    <img src="https://images.unsplash.com/photo-1527526029430-319f10814151?auto=format&fit=crop&w=800&q=80" alt="Globos de fiesta">
+    <img src="https://images.unsplash.com/photo-1604014237147-8f93e9f2f765?auto=format&fit=crop&w=800&q=80" alt="Decoración festiva">
+    <img src="https://images.unsplash.com/photo-1591604461737-d1e6d08a9b97?auto=format&fit=crop&w=800&q=80" alt="Celebración con globos">
+  </section>
+
+  <!-- Catalogo 区域 -->
+  <footer>
+    <h2>Catálogo</h2>
+    <p>Aquí podrás encontrar todos nuestros productos y precios.</p>
+    <div class="catalogo">
+      <!-- 这里可以替换成你的 PDF 链接 / Google Drive 链接 -->
+      <a href="#" target="_blank">Ver Catálogo</a>
+    </div>
+  </footer>
+
+</body>
+</html>
