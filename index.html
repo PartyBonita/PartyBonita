@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PartyBonita</title>
+  <style>
+    :root{
+      --maxw: 1200px;
+      --tagline-color: #7c3aed; /* 标语改为紫色（可调） */ /* 标语颜色：紫色 */
+      --bg-overlay: rgba(255,255,255,.78); /* 背景图上方的柔和白色薄纱 */
+    }
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans SC","PingFang SC",sans-serif;
+      color:#333; line-height:1.6; position:relative; background:#fff;
+    }
+    /* 背景图：节日气球背景 */
+    body::before{
+      /* 背景图：节日氛围（已替换为更合适的气球/彩纸图） */
+      content:""; position:fixed; inset:0; z-index:-2;
+      background-image:url('https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1920&q=60'); /* ← 这里可替换为你的背景图链接 */
+      background-size:cover; background-position:center; filter:blur(1px) saturate(0.9);
+      opacity:.15; /* 背景强度：0.10~0.25，已调为低调不刺眼 */
+    }
+    body::after{
+      content:""; position:fixed; inset:0; z-index:-1; background: var(--bg-overlay);
+    }
+
+    .container{ max-width: var(--maxw); margin:0 auto; padding: 0 20px; }
+
+    header{ padding: 64px 20px 16px; text-align:center; }
+    .logo{
+      font-size: clamp(42px, 6vw, 86px);
+      font-weight: 900; letter-spacing: .5px; margin:0;
+      background: linear-gradient(135deg,#ff6ec4, #7873f5, #4ade80);
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+      text-shadow: 0 2px 0 rgba(255,255,255,.35);
+    }
+
+    .tagline{
+      margin: 14px auto 28px; text-align:center; font-size: clamp(18px,2.2vw,26px);
+      color: var(--tagline-color); font-weight: 600; padding: 6px 10px; display:inline-block;
+      background: rgba(255,255,255,.6); border:1px solid rgba(0,0,0,.06); border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+
+    .section{ padding: 24px 0 10px; }
+    .section h2{ margin: 6px 0 14px; font-size: 22px; color:#333; text-align:center; }
+
+    /* 竖图画廊优化：竖图更大 */
+    .gallery{
+      display:grid; gap:20px; align-items:stretch; padding-bottom: 24px;
+      grid-template-columns: repeat( auto-fit, minmax(320px, 1fr) );
+    }
+    .card{
+      background: rgba(255,255,255,.7); border:1px solid rgba(0,0,0,.06); border-radius:16px; overflow:hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,.08);
+    }
+    .card img{
+      display:block; width:100%; aspect-ratio: 3 / 4; /* 竖向比例 */
+      object-fit: cover; object-position: center;
+    }
+    .cap{ padding: 10px 12px; font-size:14px; color:#444; text-align:center; }
+
+    footer{
+      margin-top: 24px; padding: 36px 0 60px; text-align:center;
+      background: rgba(255,255,255,.75);
+      border-top:1px solid rgba(0,0,0,.08);
+    }
+    .footer-title{ font-size: 22px; margin-bottom:12px; }
+    .footer-info{ margin:4px 0; color:#555; font-size:15px; }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <h1 class="logo">PartyBonita</h1>
+    <p class="tagline">Todos para celebrar y regalar , en un solo lugar .</p>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>Inspiración de fiesta 🎈（竖图示例，可替换为你的图片）</h2>
+      <div class="gallery">
+        <!-- 竖向图片：已优化为更适合竖图展示的素材（可按需替换） -->
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1200&q=80" alt="Globos y decoración 1" />
+          <figcaption class="cap">Globos coloridos</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1521334726092-b509a19597e4?auto=format&fit=crop&w=1200&q=80" alt="Arco de globos 2" />
+          <figcaption class="cap">Arco de globos</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1549778399-f94fd24d4697?auto=format&fit=crop&w=1200&q=80" alt="Fiesta temática 3" />
+          <figcaption class="cap">Fiesta temática</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" alt="Detalle de celebración 4" />
+          <figcaption class="cap">Detalle de celebración</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <!-- 联系方式与地址（按你的要求暂留，不放目录按钮） -->
+    <div class="catalogo-box" id="contacto">
+      <h2 class="catalogo-title">Contacto</h2>
+      <p class="catalogo-desc">¿Tienes un pedido o pregunta? Escríbenos o visítanos.</p>
+      <!-- 联系方式（可替换） -->
+      <div style="line-height:1.9">
+        <!-- 电话/WhatsApp：可改为你的号码 -->
+        <!-- 标注：如需 WhatsApp 点击直达，可把 href 改为 https://wa.me/525512345678 -->
+        <div><strong>Tel / WhatsApp:</strong> <a href="tel:+525512345678">+52 55 1234 5678</a></div>
+        <!-- 邮箱：可改为你的邮箱 -->
+        <div><strong>Email:</strong> <a href="mailto:hola@partybonita.com">hola@partybonita.com</a></div>
+        <!-- 地址：随机示例地址，可替换为你的真实地址 -->
+        <div><strong>Dirección:</strong> Av. Insurgentes Sur 1234, Col. Del Valle, Benito Juárez, Ciudad de México, 03100</div>
+        <!-- 可选：地图链接，将目标地址编码后替换 q= -->
+        <div><a class="btn" href="https://www.google.com/maps/search/?api=1&q=Av.+Insurgentes+Sur+1234,+Col.+Del+Valle,+Benito+Ju%C3%A1rez,+CDMX+03100" target="_blank" rel="noopener">Ver en Google Maps</a></div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
