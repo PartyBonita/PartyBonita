@@ -12,267 +12,399 @@
   <meta property="og:description" content="Todo para celebrar y regalar, en un solo lugar." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://partybonita.github.io/PartyBonita/" />
+  <!-- 如果你还没有 og-cover.jpg，可以先删掉下一行或换成 logo.png -->
+  <!-- <meta property="og:image" content="https://partybonita.github.io/PartyBonita/assets/og-cover.jpg" /> -->
 
-  <link rel="icon" href="assets/favicon.ico" />
+  <!-- Icons -->
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="assets/site.webmanifest" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png" />
 
   <style>
     :root{
-      --maxw:1100px;
-      --brand:#7c3aed;
-      --ink:#1f2937;
-      --muted:#6b7280;
-      --panel:rgba(255,255,255,.85);
-      --border:rgba(0,0,0,.08);
+      --maxw: 1120px;
+
+      /* 更“公司感”的品牌色：更稳、更高级 */
+      --brand: #6d28d9;        /* 主紫 */
+      --brand-2: #2563eb;      /* 辅蓝 */
+      --ink: #111827;          /* 主文字 */
+      --muted: #6b7280;        /* 次级文字 */
+      --line: rgba(17,24,39,.10);
+      --panel: rgba(255,255,255,.88);
+
+      --shadow: 0 14px 34px rgba(17,24,39,.10);
+      --radius: 16px;
     }
-    *{box-sizing:border-box;}
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
-      color:var(--ink);
-      line-height:1.6;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+      color: var(--ink);
+      line-height: 1.6;
+      background:#fff;
     }
 
+    /* 背景：清晰但不花 */
     body::before{
       content:"";
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      background:url("assets/bg.jpg") center/cover no-repeat;
-      opacity:.35;
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: url("assets/bg.jpg") center/cover no-repeat;
+      opacity: .34;
+      filter: saturate(1.05) blur(.2px);
     }
+    /* 白纱：保证文字可读 */
     body::after{
       content:"";
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.95));
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,.78), rgba(255,255,255,.94)),
+        linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.96));
     }
 
-    .container{max-width:var(--maxw);margin:auto;padding:0 20px;}
+    .container{ max-width: var(--maxw); margin:0 auto; padding:0 20px; }
 
-    /* Topbar */
+    /* 顶部栏 */
     .topbar{
-      position:sticky;top:0;z-index:20;
-      background:rgba(255,255,255,.94);
-      border-bottom:1px solid var(--border);
-      backdrop-filter:blur(6px);
+      position: sticky;
+      top:0;
+      z-index: 30;
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
     }
     .topbar-inner{
-      max-width:var(--maxw);
-      margin:auto;
-      padding:10px 16px;
+      max-width: var(--maxw);
+      margin:0 auto;
+      padding: 10px 16px;
       display:flex;
-      justify-content:space-between;
+      justify-content: space-between;
       align-items:center;
+      gap: 12px;
     }
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
-      font-weight:900;
-      font-size:18px;
-      color:var(--brand);
       text-decoration:none;
+      color: var(--ink);
+      font-weight: 900;
+      letter-spacing: .2px;
     }
-    .brand img{width:28px;height:28px;border-radius:6px;}
+    .brand img{
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 6px 16px rgba(0,0,0,.12);
+      background: rgba(255,255,255,.9);
+    }
+    .nav-actions{ display:flex; gap:10px; flex-wrap:wrap; }
 
     .btn{
-      padding:10px 16px;
-      border-radius:10px;
-      background:#eef2ff;
-      border:1px solid var(--border);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(109,40,217,.18);
+      background: rgba(109,40,217,.08);
+      color: var(--ink);
+      font-weight: 800;
       text-decoration:none;
-      color:#111;
-      font-weight:700;
+      transition: transform .12s ease, box-shadow .18s ease, background .18s ease;
+      white-space: nowrap;
     }
-    .btn.primary{background:var(--brand);color:#fff;border:none;}
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(17,24,39,.10);
+      background: rgba(109,40,217,.12);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      border: none;
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(37,99,235,.22);
+    }
 
     /* Hero */
-    header{text-align:center;padding:64px 20px 32px;}
+    header{ padding: 56px 0 10px; text-align:center; }
     .hero-logo{
-      width:120px;height:120px;
-      margin:0 auto 10px;
+      width: 128px;
+      height: 128px;
+      margin: 6px auto 10px;
       display:block;
-      object-fit:contain;
+      object-fit: contain;
+      border-radius: 22px;
+      background: rgba(255,255,255,.85);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: 10px;
     }
     h1{
-      font-size:clamp(44px,6vw,84px);
-      margin:0;
-      color:var(--brand);
+      margin: 0;
+      font-size: clamp(42px, 6vw, 78px);
+      letter-spacing: .2px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .tagline{
-      font-size:20px;
-      margin:10px 0 16px;
-      color:#4b5563;
-      font-weight:600;
+      margin: 10px 0 14px;
+      font-size: clamp(16px, 2.2vw, 22px);
+      color: #374151;
+      font-weight: 700;
     }
-
     .cta{
       display:flex;
-      gap:12px;
       justify-content:center;
+      gap:12px;
       flex-wrap:wrap;
+      margin-top: 8px;
     }
     .cta-note{
-      margin-top:6px;
-      font-size:13px;
-      color:var(--muted);
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
     }
 
-    /* Cards */
+    /* “公司感”信息条：Mayoreo / Pedido mínimo */
+    .info-bar{
+      max-width: 980px;
+      margin: 22px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px 14px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      text-align:left;
+    }
+    @media (min-width: 820px){
+      .info-bar{ grid-template-columns: 1.2fr 1fr 1fr; }
+    }
+    .info-item{
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(17,24,39,.08);
+      background: rgba(255,255,255,.78);
+    }
+    .info-title{
+      font-weight: 900;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom: 4px;
+    }
+    .info-desc{ color: var(--muted); font-size: 14px; font-weight: 600; }
+
+    /* 分类卡片 */
+    main{ padding: 22px 0 10px; }
     .cards{
       display:grid;
-      grid-template-columns:1fr;
-      gap:18px;
-      margin-top:24px;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 18px;
     }
-    @media(min-width:900px){
-      .cards{grid-template-columns:repeat(2,1fr);}
-    }
+    @media (min-width: 900px){ .cards{ grid-template-columns: repeat(2, 1fr); } }
+
     .card{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:16px;
-      overflow:hidden;
-      text-align:center;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
       text-decoration:none;
-      color:inherit;
-      box-shadow:0 10px 22px rgba(0,0,0,.08);
+      color: inherit;
+      box-shadow: var(--shadow);
+      transition: transform .12s ease, box-shadow .18s ease;
     }
-    .card img{
-      width:100%;
-      aspect-ratio:3/4;
-      object-fit:cover;
-    }
-    .card h2{
-      margin:14px 0 18px;
-      font-size:20px;
-      font-weight:900;
-    }
+    .card:hover{ transform: translateY(-2px); box-shadow: 0 18px 40px rgba(17,24,39,.14); }
+    .card img{ width:100%; aspect-ratio: 3/4; object-fit: cover; display:block; }
+    .card-body{ padding: 14px; text-align:center; }
+    .card-title{ margin:0; font-size: 20px; font-weight: 1000; letter-spacing:.2px; }
 
     /* Catalog */
     .catalog{
-      margin:30px auto 0;
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:20px;
+      max-width: 980px;
+      margin: 26px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
       text-align:center;
-      max-width:900px;
+    }
+    .catalog h2{ margin: 4px 0 8px; font-size: 26px; }
+    .catalog p{ margin: 0 0 14px; color: var(--muted); font-weight: 600; }
+    .catalog-actions{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+    .tiny{
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
     }
 
     /* Footer */
     footer{
-      margin-top:40px;
-      background:rgba(255,255,255,.95);
-      border-top:1px solid var(--border);
-      padding:28px 20px 78px;
+      margin-top: 34px;
+      background: rgba(255,255,255,.95);
+      border-top: 1px solid var(--line);
+      padding: 26px 20px 78px;
     }
     .footer-grid{
-      max-width:var(--maxw);
-      margin:auto;
+      max-width: var(--maxw);
+      margin:0 auto;
       display:grid;
-      gap:14px;
+      gap: 14px;
+      grid-template-columns: 1fr;
     }
-    @media(min-width:860px){
-      .footer-grid{grid-template-columns:2fr 1fr;}
+    @media (min-width: 860px){
+      .footer-grid{ grid-template-columns: 2fr 1fr; }
     }
-    .footer-title{font-weight:900;margin-bottom:8px;}
-    .footer-item{font-size:14px;margin:6px 0;}
+    .footer-title{ font-weight: 1000; margin-bottom: 8px; }
+    .footer-item{ margin: 6px 0; color:#111827; font-size: 14px; }
+    .footer-item span{ color: var(--muted); font-weight: 600; }
 
     .copyright{
-      margin-top:16px;
+      margin-top: 14px;
       text-align:center;
-      font-size:13px;
-      color:var(--muted);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
     }
 
-    /* WhatsApp FAB */
+    /* WhatsApp floating */
     .whatsapp-fab{
-      position:fixed;
-      right:18px;
-      bottom:20px;
-      width:56px;height:56px;
-      background:#25D366;
-      border-radius:50%;
+      position: fixed;
+      right: 18px;
+      bottom: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
       display:flex;
       align-items:center;
       justify-content:center;
-      color:#fff;
       text-decoration:none;
-      box-shadow:0 10px 24px rgba(0,0,0,.22);
+      box-shadow: 0 14px 30px rgba(0,0,0,.20);
+      transition: transform .12s ease, box-shadow .18s ease;
+      font-size: 22px;
+      font-weight: 900;
     }
+    .whatsapp-fab:hover{ transform: translateY(-2px); box-shadow: 0 18px 36px rgba(0,0,0,.26); }
   </style>
 </head>
 
 <body>
-
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="#">
-      <img src="assets/logo.png" alt="PartyBonita">
-      PartyBonita
-    </a>
-    <a class="btn primary" href="https://wa.me/525599998888" target="_blank">WhatsApp</a>
-  </div>
-</div>
-
-<header class="container">
-  <img class="hero-logo" src="assets/logo.png" alt="PartyBonita">
-  <h1>PartyBonita</h1>
-  <p class="tagline">Todo para celebrar y regalar, en un solo lugar</p>
-
-  <div class="cta">
-    <a class="btn primary" href="https://wa.me/525599998888" target="_blank">WhatsApp</a>
-    <a class="btn" href="#catalogo">Catálogo</a>
-  </div>
-  <div class="cta-note">Cotiza por WhatsApp</div>
-</header>
-
-<main class="container">
-  <div class="cards">
-    <a class="card" href="#catalogo">
-      <img src="assets/balloons-01.jpg" alt="Globos">
-      <h2>Globos</h2>
-    </a>
-    <a class="card" href="#catalogo">
-      <img src="assets/kitty-01.jpg" alt="Juguetes">
-      <h2>Juguetes</h2>
-    </a>
-  </div>
-
-  <section id="catalogo" class="catalog">
-    <h2>Catálogo</h2>
-    <p>Solicita precios y disponibilidad directamente por WhatsApp.</p>
-    <a class="btn primary" href="https://wa.me/525599998888" target="_blank">Cotizar ahora</a>
-  </section>
-</main>
-
-<footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-title">Contacto</div>
-      <div class="footer-item"><strong>Tel / WhatsApp:</strong> +52 55 9999 8888</div>
-      <div class="footer-item"><strong>Email:</strong> contacto@partybonita.mx</div>
-      <div class="footer-item"><strong>Dirección:</strong> Col. Del Valle, Benito Juárez, CDMX</div>
-      <div class="footer-item"><strong>Horario:</strong> Lun–Sáb 10:00–19:00</div>
-    </div>
-    <div>
-      <div class="footer-title">Enlaces</div>
-      <div class="footer-item"><a href="#catalogo">Catálogo</a></div>
-      <div class="footer-item"><a href="https://wa.me/525599998888" target="_blank">WhatsApp</a></div>
+  <div class="topbar" role="navigation" aria-label="Main navigation">
+    <div class="topbar-inner">
+      <a class="brand" href="#">
+        <img src="assets/logo.png" alt="PartyBonita Logo">
+        PartyBonita
+      </a>
+      <div class="nav-actions">
+        <a class="btn" href="#catalogo">Catálogo</a>
+        <a class="btn primary" href="https://wa.me/525599998888" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
     </div>
   </div>
-  <div class="copyright">© <span id="y"></span> PartyBonita</div>
-</footer>
 
-<a class="whatsapp-fab" href="https://wa.me/525599998888" target="_blank">💬</a>
+  <header class="container" role="banner">
+    <img class="hero-logo" src="assets/logo.png" alt="PartyBonita Logo">
+    <h1>PartyBonita</h1>
+    <div class="tagline">Todo para celebrar y regalar, en un solo lugar</div>
 
-<script>
-  document.getElementById("y").textContent = new Date().getFullYear();
-</script>
+    <div class="cta">
+      <a class="btn primary" href="https://wa.me/525599998888" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+      <a class="btn" href="#catalogo">Ver catálogo</a>
+    </div>
+    <div class="cta-note">Respuesta rápida · Cotización y disponibilidad</div>
 
+    <!-- Mayoreo / Info -->
+    <div class="info-bar" aria-label="Información de compra">
+      <div class="info-item">
+        <div class="info-title">Mayoreo</div>
+        <div class="info-desc">Precios por volumen (solicita lista)</div>
+      </div>
+      <div class="info-item">
+        <div class="info-title">Pedido mínimo</div>
+        <div class="info-desc">$_____ MXN (por definir)</div>
+      </div>
+      <div class="info-item">
+        <div class="info-title">Entrega</div>
+        <div class="info-desc">CDMX · 24–48 h (según zona)</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="cards" role="list">
+      <a class="card" href="#catalogo" role="listitem" aria-label="Ver Globos">
+        <img src="assets/balloons-01.jpg" alt="Globos" loading="lazy">
+        <div class="card-body"><h2 class="card-title">Globos</h2></div>
+      </a>
+
+      <a class="card" href="#catalogo" role="listitem" aria-label="Ver Juguetes">
+        <img src="assets/kitty-01.jpg" alt="Juguetes" loading="lazy">
+        <div class="card-body"><h2 class="card-title">Juguetes</h2></div>
+      </a>
+    </div>
+
+    <section id="catalogo" class="catalog" aria-label="Catálogo">
+      <h2>Catálogo</h2>
+      <p>Descarga el PDF o pide la lista completa por WhatsApp.</p>
+
+      <div class="catalog-actions">
+        <!-- 你把 catalogo.pdf 上传到仓库根目录后，这个就能直接打开 -->
+        <a class="btn primary" href="catalogo.pdf" target="_blank" rel="noopener">Abrir catálogo (PDF)</a>
+        <a class="btn" href="https://wa.me/525599998888" target="_blank" rel="noopener">Pedir lista por WhatsApp</a>
+      </div>
+
+      <div class="tiny">Actualizado: <span id="updated"></span></div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-title">Contacto</div>
+        <div class="footer-item"><strong>Tel / WhatsApp:</strong> <span>+52 55 9999 8888</span></div>
+        <div class="footer-item"><strong>Email:</strong> <span>contacto@partybonita.mx</span></div>
+        <div class="footer-item"><strong>Dirección:</strong> <span>Col. Del Valle, Benito Juárez, CDMX</span></div>
+        <div class="footer-item"><strong>Horario:</strong> <span>Lun–Sáb 10:00–19:00</span></div>
+      </div>
+      <div>
+        <div class="footer-title">Enlaces</div>
+        <div class="footer-item"><a href="#catalogo">Catálogo</a></div>
+        <div class="footer-item"><a href="https://wa.me/525599998888" target="_blank" rel="noopener">WhatsApp</a></div>
+      </div>
+    </div>
+    <div class="copyright">© <span id="y"></span> PartyBonita</div>
+  </footer>
+
+  <a class="whatsapp-fab" href="https://wa.me/525599998888" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    // 这里显示“今日日期”，你也可以改成固定版本号
+    const d = new Date();
+    const pad = (n)=> String(n).padStart(2,"0");
+    document.getElementById("updated").textContent = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  </script>
 </body>
 </html>
