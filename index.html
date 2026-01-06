@@ -5,41 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PartyBonita</title>
 
-  <meta name="description" content="PartyBonita · Globos y juguetes. Todo para celebrar y regalar en un solo lugar." />
+  <meta name="description" content="PartyBonita · Globos y juguetes para celebrar y regalar en CDMX." />
   <meta name="robots" content="index,follow" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="PartyBonita" />
   <meta property="og:description" content="Todo para celebrar y regalar, en un solo lugar." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://partybonita.github.io/PartyBonita/" />
-  <meta property="og:image" content="https://partybonita.github.io/PartyBonita/assets/logo.png" />
 
-  <!-- Favicons -->
-  <link rel="icon" href="assets/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" href="assets/favicon.ico" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="assets/site.webmanifest" />
 
   <style>
     :root{
+      --maxw:1100px;
       --brand:#7c3aed;
       --ink:#1f2937;
       --muted:#6b7280;
       --panel:rgba(255,255,255,.85);
-      --maxw:1100px;
+      --border:rgba(0,0,0,.08);
     }
-    *{box-sizing:border-box}
+    *{box-sizing:border-box;}
     body{
       margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
       color:var(--ink);
       line-height:1.6;
-      background:#fff;
     }
 
-    /* Background */
     body::before{
       content:"";
       position:fixed;
@@ -53,169 +47,232 @@
       position:fixed;
       inset:0;
       z-index:-1;
-      background:linear-gradient(
-        to bottom,
-        rgba(255,255,255,.75),
-        rgba(255,255,255,.9)
-      );
+      background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.95));
     }
+
+    .container{max-width:var(--maxw);margin:auto;padding:0 20px;}
 
     /* Topbar */
     .topbar{
-      position:sticky;
-      top:0;
-      background:rgba(255,255,255,.9);
-      border-bottom:1px solid rgba(0,0,0,.05);
-      z-index:10;
+      position:sticky;top:0;z-index:20;
+      background:rgba(255,255,255,.94);
+      border-bottom:1px solid var(--border);
+      backdrop-filter:blur(6px);
     }
     .topbar-inner{
       max-width:var(--maxw);
       margin:auto;
-      padding:12px 20px;
+      padding:10px 16px;
       display:flex;
       justify-content:space-between;
       align-items:center;
     }
     .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
       font-weight:900;
-      font-size:20px;
-      background:linear-gradient(135deg,#8b5cf6,#60a5fa);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+      font-size:18px;
+      color:var(--brand);
+      text-decoration:none;
     }
+    .brand img{width:28px;height:28px;border-radius:6px;}
+
     .btn{
       padding:10px 16px;
-      border-radius:12px;
+      border-radius:10px;
+      background:#eef2ff;
+      border:1px solid var(--border);
       text-decoration:none;
+      color:#111;
       font-weight:700;
-      border:1px solid #ddd;
-      color:var(--ink);
-      background:#f3f4f6;
     }
-    .btn.primary{
-      background:var(--brand);
-      color:#fff;
-      border-color:var(--brand);
-    }
+    .btn.primary{background:var(--brand);color:#fff;border:none;}
 
     /* Hero */
-    header{
-      max-width:var(--maxw);
-      margin:auto;
-      padding:80px 20px 40px;
-      text-align:center;
+    header{text-align:center;padding:64px 20px 32px;}
+    .hero-logo{
+      width:120px;height:120px;
+      margin:0 auto 10px;
+      display:block;
+      object-fit:contain;
     }
-    .logo{
-      font-size:clamp(48px,7vw,90px);
-      font-weight:900;
+    h1{
+      font-size:clamp(44px,6vw,84px);
       margin:0;
-      background:linear-gradient(135deg,#7c3aed,#38bdf8);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+      color:var(--brand);
     }
     .tagline{
-      margin:14px 0 24px;
-      font-size:clamp(18px,2.2vw,26px);
-      font-weight:700;
-      color:var(--brand);
+      font-size:20px;
+      margin:10px 0 16px;
+      color:#4b5563;
+      font-weight:600;
+    }
+
+    .cta{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .cta-note{
+      margin-top:6px;
+      font-size:13px;
+      color:var(--muted);
     }
 
     /* Cards */
     .cards{
-      max-width:var(--maxw);
-      margin:auto;
-      padding:20px;
       display:grid;
       grid-template-columns:1fr;
-      gap:24px;
+      gap:18px;
+      margin-top:24px;
     }
     @media(min-width:900px){
-      .cards{grid-template-columns:repeat(2,1fr)}
+      .cards{grid-template-columns:repeat(2,1fr);}
     }
     .card{
       background:var(--panel);
-      border-radius:18px;
+      border:1px solid var(--border);
+      border-radius:16px;
       overflow:hidden;
+      text-align:center;
       text-decoration:none;
       color:inherit;
-      box-shadow:0 6px 18px rgba(0,0,0,.08);
-      transition:.2s;
+      box-shadow:0 10px 22px rgba(0,0,0,.08);
     }
-    .card:hover{transform:translateY(-4px)}
     .card img{
       width:100%;
       aspect-ratio:3/4;
       object-fit:cover;
     }
     .card h2{
-      margin:14px;
+      margin:14px 0 18px;
+      font-size:20px;
+      font-weight:900;
+    }
+
+    /* Catalog */
+    .catalog{
+      margin:30px auto 0;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:20px;
       text-align:center;
-      font-size:22px;
-      font-weight:800;
+      max-width:900px;
     }
 
     /* Footer */
     footer{
-      background:#fff;
-      border-top:1px solid rgba(0,0,0,.06);
-      padding:40px 20px 70px;
-      text-align:center;
+      margin-top:40px;
+      background:rgba(255,255,255,.95);
+      border-top:1px solid var(--border);
+      padding:28px 20px 78px;
     }
-    .muted{color:var(--muted);font-size:14px}
+    .footer-grid{
+      max-width:var(--maxw);
+      margin:auto;
+      display:grid;
+      gap:14px;
+    }
+    @media(min-width:860px){
+      .footer-grid{grid-template-columns:2fr 1fr;}
+    }
+    .footer-title{font-weight:900;margin-bottom:8px;}
+    .footer-item{font-size:14px;margin:6px 0;}
 
-    /* WhatsApp */
-    .whatsapp{
+    .copyright{
+      margin-top:16px;
+      text-align:center;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    /* WhatsApp FAB */
+    .whatsapp-fab{
       position:fixed;
-      right:20px;
-      bottom:22px;
-      width:56px;
-      height:56px;
-      border-radius:50%;
+      right:18px;
+      bottom:20px;
+      width:56px;height:56px;
       background:#25D366;
+      border-radius:50%;
       display:flex;
       align-items:center;
       justify-content:center;
       color:#fff;
       text-decoration:none;
-      box-shadow:0 6px 18px rgba(0,0,0,.25);
-      font-size:26px;
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
     }
   </style>
 </head>
 
 <body>
 
-<!-- Topbar -->
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="brand">PartyBonita</div>
-    <a class="btn primary" href="https://wa.me/525512345678" target="_blank">WhatsApp</a>
+    <a class="brand" href="#">
+      <img src="assets/logo.png" alt="PartyBonita">
+      PartyBonita
+    </a>
+    <a class="btn primary" href="https://wa.me/525599998888" target="_blank">WhatsApp</a>
   </div>
 </div>
 
-<!-- Hero -->
-<header>
-  <h1 class="logo">PartyBonita</h1>
-  <p class="tagline">Todo para celebrar y regalar, en un solo lugar.</p>
+<header class="container">
+  <img class="hero-logo" src="assets/logo.png" alt="PartyBonita">
+  <h1>PartyBonita</h1>
+  <p class="tagline">Todo para celebrar y regalar, en un solo lugar</p>
+
+  <div class="cta">
+    <a class="btn primary" href="https://wa.me/525599998888" target="_blank">WhatsApp</a>
+    <a class="btn" href="#catalogo">Catálogo</a>
+  </div>
+  <div class="cta-note">Cotiza por WhatsApp</div>
 </header>
 
-<!-- Categories -->
-<section class="cards">
-  <a class="card" href="#">
-    <img src="assets/balloons-01.jpg" alt="Globos">
-    <h2>Globos</h2>
-  </a>
-  <a class="card" href="#">
-    <img src="assets/kitty-01.jpg" alt="Juguetes">
-    <h2>Juguetes</h2>
-  </a>
-</section>
+<main class="container">
+  <div class="cards">
+    <a class="card" href="#catalogo">
+      <img src="assets/balloons-01.jpg" alt="Globos">
+      <h2>Globos</h2>
+    </a>
+    <a class="card" href="#catalogo">
+      <img src="assets/kitty-01.jpg" alt="Juguetes">
+      <h2>Juguetes</h2>
+    </a>
+  </div>
+
+  <section id="catalogo" class="catalog">
+    <h2>Catálogo</h2>
+    <p>Solicita precios y disponibilidad directamente por WhatsApp.</p>
+    <a class="btn primary" href="https://wa.me/525599998888" target="_blank">Cotizar ahora</a>
+  </section>
+</main>
 
 <footer>
-  <p class="muted">© 2026 PartyBonita · CDMX</p>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-title">Contacto</div>
+      <div class="footer-item"><strong>Tel / WhatsApp:</strong> +52 55 9999 8888</div>
+      <div class="footer-item"><strong>Email:</strong> contacto@partybonita.mx</div>
+      <div class="footer-item"><strong>Dirección:</strong> Col. Del Valle, Benito Juárez, CDMX</div>
+      <div class="footer-item"><strong>Horario:</strong> Lun–Sáb 10:00–19:00</div>
+    </div>
+    <div>
+      <div class="footer-title">Enlaces</div>
+      <div class="footer-item"><a href="#catalogo">Catálogo</a></div>
+      <div class="footer-item"><a href="https://wa.me/525599998888" target="_blank">WhatsApp</a></div>
+    </div>
+  </div>
+  <div class="copyright">© <span id="y"></span> PartyBonita</div>
 </footer>
 
-<a class="whatsapp" href="https://wa.me/525512345678" target="_blank">💬</a>
+<a class="whatsapp-fab" href="https://wa.me/525599998888" target="_blank">💬</a>
+
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
