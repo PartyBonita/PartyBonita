@@ -72,7 +72,7 @@
       content:"";
       position: fixed;
       inset: 0;
-      z-index: -2;
+      z-index: -3; /* 往后放一层，给“左右渐变层”留位置 */
       background: url("assets/bg.jpg") center/cover no-repeat;
       opacity: .34;
       filter: saturate(1.05) blur(.2px);
@@ -83,10 +83,29 @@
       content:"";
       position: fixed;
       inset: 0;
-      z-index: -1;
+      z-index: -2; /* 往后放一层 */
       background:
         radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,.78), rgba(255,255,255,.94)),
         linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.96));
+    }
+
+    /* ✅ ====== ④-4.5（新增：方案一）左右视觉填充层 ======
+       作用：不加内容，仅用超淡渐变让两侧不“空”
+       不影响点击（pointer-events:none）
+    */
+    .edge-overlay{
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.06) 0%,
+          rgba(0,0,0,0) 12%,
+          rgba(0,0,0,0) 88%,
+          rgba(0,0,0,.06) 100%
+        );
     }
 
     /* ====== ④-5 容器（控制内容最大宽度）====== */
@@ -223,7 +242,7 @@
       margin-top: 8px;
     }
 
-    /* 按钮下方那句小字（你说的“2E按键下方”类似这块） */
+    /* 按钮下方那句小字 */
     .cta-note{
       margin-top: 8px;
       font-size: 13px;
@@ -333,24 +352,19 @@
 
 <body>
 
+  <!-- ✅（新增）左右视觉填充层：方案一核心 -->
+  <div class="edge-overlay" aria-hidden="true"></div>
+
   <!-- ====== ⑤ 顶部栏（一直固定在顶部）====== -->
   <div class="topbar" role="navigation" aria-label="Main navigation">
     <div class="topbar-inner">
-
-      <!-- 顶部左侧：品牌小logo + 名称
-           如果你想改logo文件名：改 src="assets/logo.png"
-      -->
       <a class="brand" href="#">
         <img src="assets/logo.png" alt="PartyBonita Logo">
         PartyBonita
       </a>
 
-      <!-- 顶部右侧：导航按钮 -->
       <div class="nav-actions">
-        <!-- Catálogo按钮：跳转到页面里的 #catalogo 区块 -->
         <a class="btn" href="#catalogo">Catálogo</a>
-
-        <!-- WhatsApp按钮：跳转到你自己的wa.me号码（你以后替换这个数字） -->
         <a class="btn primary" href="https://wa.me/525599998888" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
@@ -358,36 +372,26 @@
 
   <!-- ====== ⑥ 首屏Hero（大logo + 大标题 + 按钮）====== -->
   <header class="container" role="banner">
-    <!-- 首屏大logo -->
     <img class="hero-logo" src="assets/logo.png" alt="PartyBonita Logo">
-
-    <!-- 大标题 -->
     <h1>PartyBonita</h1>
-
-    <!-- 副标题（你想改文案改这里） -->
     <div class="tagline">Todo para celebrar y regalar, en un solo lugar</div>
 
-    <!-- CTA按钮（你要的“Cotizar por WhatsApp / Ver catálogo”） -->
     <div class="cta">
       <a class="btn primary" href="https://wa.me/525599998888" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
       <a class="btn" href="#catalogo">Ver catálogo</a>
     </div>
 
-    <!-- CTA按钮下面的提示文字（你要写“cotiza por WhatsApp”类似就改这里） -->
     <div class="cta-note">Respuesta rápida · Cotización y disponibilidad</div>
   </header>
 
   <!-- ====== ⑦ 主内容：分类卡片（Globos / Juguetes）====== -->
   <main class="container">
     <div class="cards" role="list">
-
-      <!-- 卡片1：Globos（图片 assets/balloons-01.jpg） -->
       <a class="card" href="#catalogo" role="listitem" aria-label="Ver Globos">
         <img src="assets/balloons-01.jpg" alt="Globos" loading="lazy">
         <div class="card-body"><h2 class="card-title">Globos</h2></div>
       </a>
 
-      <!-- 卡片2：Juguetes（图片 assets/kitty-01.jpg） -->
       <a class="card" href="#catalogo" role="listitem" aria-label="Ver Juguetes">
         <img src="assets/kitty-01.jpg" alt="Juguetes" loading="lazy">
         <div class="card-body"><h2 class="card-title">Juguetes</h2></div>
@@ -400,14 +404,10 @@
       <p>Descarga el PDF o pide la lista completa por WhatsApp.</p>
 
       <div class="catalog-actions">
-        <!-- catalogo.pdf 需要你上传到“仓库根目录”，和 index.html 同级 -->
         <a class="btn primary" href="catalogo.pdf" target="_blank" rel="noopener">Abrir catálogo (PDF)</a>
-
-        <!-- WhatsApp询价按钮 -->
         <a class="btn" href="https://wa.me/525599998888" target="_blank" rel="noopener">Pedir lista por WhatsApp</a>
       </div>
 
-      <!-- 自动显示今天日期（你也可以改成固定版本号） -->
       <div class="tiny">Actualizado: <span id="updated"></span></div>
     </section>
   </main>
@@ -417,8 +417,6 @@
     <div class="footer-grid">
       <div>
         <div class="footer-title">Contacto</div>
-
-        <!-- 你以后改号码/邮箱/地址，就改这4行 -->
         <div class="footer-item"><strong>Tel / WhatsApp:</strong> <span>+52 55 9999 8888</span></div>
         <div class="footer-item"><strong>Email:</strong> <span>contacto@partybonita.mx</span></div>
         <div class="footer-item"><strong>Dirección:</strong> <span>Col. Del Valle, Benito Juárez, CDMX</span></div>
@@ -432,7 +430,6 @@
       </div>
     </div>
 
-    <!-- 自动显示当前年份 -->
     <div class="copyright">© <span id="y"></span> PartyBonita</div>
   </footer>
 
@@ -441,10 +438,8 @@
 
   <!-- ====== ⑪ 脚本：自动年份 + 自动“今日日期”====== -->
   <script>
-    /* 自动更新版权年份：© 2026 PartyBonita */
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    /* 自动显示“今日日期”（Catalog那里） */
     const d = new Date();
     const pad = (n)=> String(n).padStart(2,"0");
     document.getElementById("updated").textContent = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
