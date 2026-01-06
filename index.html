@@ -108,6 +108,27 @@
         );
     }
 
+    /* ✅ ====== ④-4.6（新增：节日点状 confetti）======
+       作用：在“左右填充层”之上，增加轻微节日氛围的小点
+       仍然不影响点击（pointer-events:none）
+       如果你觉得太明显：把 opacity 调小，比如 0.18
+       如果你觉得太淡：把 opacity 调大，比如 0.35
+    */
+    .confetti-bg{
+      position: fixed;
+      inset: 0;
+      z-index: -1;              /* 与 edge-overlay 同层，但后插入 => 覆盖在 edge-overlay 上方 */
+      pointer-events: none;
+      opacity: .28;             /* 节日感强弱：0.18~0.35 */
+      background:
+        radial-gradient(circle at 14% 22%, rgba(109,40,217,.18) 0 2px, transparent 3px),
+        radial-gradient(circle at 32% 78%, rgba(37,99,235,.16) 0 2px, transparent 3px),
+        radial-gradient(circle at 68% 28%, rgba(236,72,153,.14) 0 2px, transparent 3px),
+        radial-gradient(circle at 84% 72%, rgba(34,197,94,.14) 0 2px, transparent 3px),
+        radial-gradient(circle at 52% 52%, rgba(245,158,11,.14) 0 2px, transparent 3px);
+      background-size: 220px 220px;
+    }
+
     /* ====== ④-5 容器（控制内容最大宽度）====== */
     .container{ max-width: var(--maxw); margin:0 auto; padding:0 20px; }
 
@@ -354,6 +375,9 @@
 
   <!-- ✅（新增）左右视觉填充层：方案一核心 -->
   <div class="edge-overlay" aria-hidden="true"></div>
+
+  <!-- ✅（新增）节日点状背景 confetti（不删除你任何内容，只是叠一层氛围） -->
+  <div class="confetti-bg" aria-hidden="true"></div>
 
   <!-- ====== ⑤ 顶部栏（一直固定在顶部）====== -->
   <div class="topbar" role="navigation" aria-label="Main navigation">
