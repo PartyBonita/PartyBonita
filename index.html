@@ -12,7 +12,7 @@
   <meta property="og:description" content="Todo para celebrar y regalar, en un solo lugar." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://partybonita.github.io/PartyBonita/" />
-  <!-- <meta property="og:image" content="https://partybonita.github.io/PartyBonita/assets/og-cover.jpg" /> -->
+  <meta property="og:image" content="https://partybonita.github.io/PartyBonita/assets/logo.png" />
 
   <!-- Icons -->
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
@@ -22,6 +22,26 @@
   <link rel="manifest" href="assets/site.webmanifest" />
   <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png" />
+  <link rel="preload" as="image" href="assets/logo.png" />
+  <link rel="preload" as="image" href="assets/bg.jpg" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "PartyBonita",
+      "description": "Globos y juguetes para celebrar y regalar en CDMX.",
+      "url": "https://partybonita.github.io/PartyBonita/",
+      "telephone": "+52 55 9999 8888",
+      "email": "contacto@partybonita.mx",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Benito Juárez",
+        "addressRegion": "CDMX",
+        "streetAddress": "Col. Del Valle"
+      },
+      "openingHours": "Mo-Sa 10:00-19:00"
+    }
+  </script>
 
   <style>
     :root{
@@ -422,7 +442,7 @@
         <a class="btn" href="#quienes-somos">Quiénes somos</a>
         <a class="btn" href="#como-comprar">Cómo comprar</a>
         <a class="btn" href="#catalogo">Catálogo</a>
-        <a class="btn primary" href="https://wa.me/525599998888" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn primary" href="https://wa.me/525599998888" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
       </div>
     </div>
   </div>
@@ -465,7 +485,7 @@
       </p>
 
       <div class="info-actions">
-        <a class="btn primary" href="https://wa.me/525599998888" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+        <a class="btn primary" href="https://wa.me/525599998888" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
         <a class="btn" href="#catalogo">Ver catálogo</a>
       </div>
     </section>
@@ -497,7 +517,7 @@
         <a class="btn" href="https://wa.me/525599998888" target="_blank" rel="noopener">Pedir lista por WhatsApp</a>
       </div>
 
-      <div class="tiny">Actualizado: <span id="updated"></span></div>
+      <div class="tiny">Actualizado: <span>Consulta por WhatsApp</span></div>
     </section>
   </main>
 
@@ -533,14 +553,10 @@
     <div class="copyright">© <span id="y"></span> PartyBonita</div>
   </footer>
 
-  <a class="whatsapp-fab" href="https://wa.me/525599998888" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+  <a class="whatsapp-fab" href="https://wa.me/525599998888" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
-    const d = new Date();
-    const pad = (n)=> String(n).padStart(2,"0");
-    document.getElementById("updated").textContent =
-      `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
   </script>
 </body>
 </html>
