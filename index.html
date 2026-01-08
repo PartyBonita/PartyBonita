@@ -5,27 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PartyBonita</title>
 
-  <!-- ====== ① 网站SEO简介（谷歌/分享用）======
-       你以后想让Google搜到的描述更好，就改这里的description
-  -->
   <meta name="description" content="PartyBonita · Globos y juguetes para celebrar y regalar en CDMX." />
   <meta name="robots" content="index,follow" />
 
-  <!-- ====== ② 社交分享卡片（WhatsApp/Facebook/微信打开链接时显示）======
-       title/description 影响“分享预览”
-       url 写你的站点地址
-       og:image 如果你没有封面图，就先不写（你现在是注释掉的）
-  -->
   <meta property="og:title" content="PartyBonita" />
   <meta property="og:description" content="Todo para celebrar y regalar, en un solo lugar." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://partybonita.github.io/PartyBonita/" />
   <!-- <meta property="og:image" content="https://partybonita.github.io/PartyBonita/assets/og-cover.jpg" /> -->
 
-  <!-- ====== ③ 图标（浏览器标签/手机添加到桌面用）======
-       这些文件都在 assets/ 里面
-       你已经上传好了 favicon + apple-touch-icon + manifest + android图标
-  -->
+  <!-- Icons -->
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
@@ -34,18 +23,15 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png" />
 
-  <!-- ====== ④ 页面整体样式（CSS）====== -->
   <style>
-    /* ====== ④-1 全局变量（你想换整体颜色/圆角/阴影就改这里）====== */
     :root{
       --maxw: 1120px;
 
-      /* 主色/辅助色：你想更偏蓝/偏紫/更成熟，改这里 */
-      --brand: #6d28d9;        /* 主紫 */
-      --brand-2: #2563eb;      /* 辅蓝 */
+      --brand: #6d28d9;
+      --brand-2: #2563eb;
 
-      --ink: #111827;          /* 主文字颜色 */
-      --muted: #6b7280;        /* 次级文字颜色 */
+      --ink: #111827;
+      --muted: #6b7280;
       --line: rgba(17,24,39,.10);
       --panel: rgba(255,255,255,.88);
 
@@ -53,7 +39,6 @@
       --radius: 16px;
     }
 
-    /* ====== ④-2 基础设置：字体、背景、排版 ====== */
     *{ box-sizing: border-box; }
     html,body{ height:100%; }
     body{
@@ -64,51 +49,27 @@
       background:#fff;
     }
 
-    /* ====== ④-3 网站背景图（assets/bg.jpg）======
-       如果你以后想换背景图：替换 assets/bg.jpg
-       opacity越大背景越明显；blur越大更柔
-    */
+    /* Background */
     body::before{
       content:"";
       position: fixed;
       inset: 0;
-      z-index: -3; /* 往后放一层，给“左右渐变层”留位置 */
+      z-index: -3;
       background: url("assets/bg.jpg") center/cover no-repeat;
       opacity: .34;
       filter: saturate(1.05) blur(.2px);
     }
-
-    /* ====== ④-4 白色遮罩（让文字更清晰） + ✅ 彩纸点（节日氛围）====== */
     body::after{
       content:"";
       position: fixed;
       inset: 0;
-      z-index: -2; /* 在背景图之上，在页面内容之下 */
-
+      z-index: -2;
       background:
-        /* ✅ 彩纸点（更明显，手机一定看得到） */
-        radial-gradient(circle at 8% 18%,  rgba(236,72,153,.24) 0 4px, transparent 5px),
-        radial-gradient(circle at 18% 70%, rgba(34,197,94,.24)  0 4px, transparent 5px),
-        radial-gradient(circle at 42% 30%, rgba(245,158,11,.24) 0 4px, transparent 5px),
-        radial-gradient(circle at 66% 18%, rgba(37,99,235,.24)  0 4px, transparent 5px),
-        radial-gradient(circle at 88% 62%, rgba(109,40,217,.24) 0 4px, transparent 5px),
-        radial-gradient(circle at 78% 86%, rgba(236,72,153,.18) 0 3px, transparent 4px),
-        radial-gradient(circle at 30% 92%, rgba(34,197,94,.18)  0 3px, transparent 4px),
-
-        /* ✅ 白纱层（保证阅读清晰，仍然专业） */
-        radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,.76), rgba(255,255,255,.92)),
-        linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.96));
-
-      /* 控制彩纸点的“密度” */
-      background-size:
-        260px 260px, 260px 260px, 260px 260px, 260px 260px, 260px 260px, 220px 220px, 220px 220px,
-        auto, auto;
+        radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,.78), rgba(255,255,255,.94)),
+        linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.96));
     }
 
-    /* ✅ ====== ④-4.5（方案一）左右视觉填充层 ======
-       作用：不加内容，仅用超淡渐变让两侧不“空”
-       不影响点击（pointer-events:none）
-    */
+    /* Edge overlay to avoid "empty sides" */
     .edge-overlay{
       position: fixed;
       inset: 0;
@@ -124,10 +85,9 @@
         );
     }
 
-    /* ====== ④-5 容器（控制内容最大宽度）====== */
     .container{ max-width: var(--maxw); margin:0 auto; padding:0 20px; }
 
-    /* ====== ⑤ 顶部栏（Topbar / 导航）====== */
+    /* Topbar */
     .topbar{
       position: sticky;
       top:0;
@@ -145,8 +105,6 @@
       align-items:center;
       gap: 12px;
     }
-
-    /* 顶部左侧“品牌”区域：小logo + PartyBonita */
     .brand{
       display:flex;
       align-items:center;
@@ -156,8 +114,6 @@
       font-weight: 900;
       letter-spacing: .2px;
     }
-
-    /* 顶部小logo的“雾化玻璃效果” */
     .brand img{
       width: 30px;
       height: 30px;
@@ -173,11 +129,8 @@
         inset 0 0 0 1px rgba(255,255,255,.35);
       padding: 4px;
     }
-
-    /* 顶部右侧按钮区域 */
     .nav-actions{ display:flex; gap:10px; flex-wrap:wrap; }
 
-    /* 按钮基础样式（灰紫按钮） */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -198,8 +151,6 @@
       box-shadow: 0 10px 20px rgba(17,24,39,.10);
       background: rgba(109,40,217,.12);
     }
-
-    /* 主要按钮（紫蓝渐变，用于 WhatsApp / 重要操作） */
     .btn.primary{
       background: linear-gradient(135deg, var(--brand), var(--brand-2));
       border: none;
@@ -207,10 +158,8 @@
       box-shadow: 0 12px 26px rgba(37,99,235,.22);
     }
 
-    /* ====== ⑥ 首屏Hero（大logo + 标题 + CTA按钮）====== */
+    /* Hero */
     header{ padding: 56px 0 10px; text-align:center; }
-
-    /* 首屏大logo（你截图中最上面的那个） */
     .hero-logo{
       width: 128px;
       height: 128px;
@@ -218,7 +167,6 @@
       display:block;
       object-fit: contain;
 
-      /* 雾化玻璃徽章 */
       border-radius: 34px;
       background: rgba(255,255,255,.35);
       backdrop-filter: blur(18px) saturate(1.25);
@@ -229,8 +177,6 @@
         inset 0 0 0 1px rgba(255,255,255,.40);
       padding: 12px;
     }
-
-    /* PartyBonita 大标题文字（渐变） */
     h1{
       margin: 0;
       font-size: clamp(42px, 6vw, 78px);
@@ -240,16 +186,12 @@
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
-    /* 副标题 */
     .tagline{
       margin: 10px 0 14px;
       font-size: clamp(16px, 2.2vw, 22px);
       color: #374151;
       font-weight: 700;
     }
-
-    /* 首屏两个按钮：WhatsApp + Catálogo */
     .cta{
       display:flex;
       justify-content:center;
@@ -257,8 +199,6 @@
       flex-wrap:wrap;
       margin-top: 8px;
     }
-
-    /* 按钮下方那句小字 */
     .cta-note{
       margin-top: 8px;
       font-size: 13px;
@@ -266,7 +206,7 @@
       font-weight: 600;
     }
 
-    /* ====== ⑦ 主内容区：分类卡片（Globos / Juguetes）====== */
+    /* Main content */
     main{ padding: 22px 0 10px; }
 
     .cards{
@@ -292,7 +232,57 @@
     .card-body{ padding: 14px; text-align:center; }
     .card-title{ margin:0; font-size: 20px; font-weight: 1000; letter-spacing:.2px; }
 
-    /* ====== ⑧ Catálogo区块（PDF链接区域）====== */
+    /* Info sections (Quiénes somos / Cómo comprar) */
+    .info-section{
+      max-width: 980px;
+      margin: 22px auto 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px 18px;
+      text-align: left;
+    }
+    .info-section h2{
+      margin: 4px 0 10px;
+      font-size: 24px;
+      text-align: left;
+    }
+    .info-section p{
+      margin: 0 0 10px;
+      color: #374151;
+      font-weight: 600;
+    }
+    .steps{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .step{
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(17,24,39,.08);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-weight: 700;
+      color: #111827;
+    }
+    .step span{
+      display:block;
+      margin-top: 4px;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .info-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+
+    /* Catalog */
     .catalog{
       max-width: 980px;
       margin: 26px auto 0;
@@ -313,7 +303,7 @@
       font-weight: 600;
     }
 
-    /* ====== ⑨ 底部Footer（联系方式/地址/邮箱/链接）====== */
+    /* Footer */
     footer{
       margin-top: 34px;
       background: rgba(255,255,255,.95);
@@ -333,8 +323,8 @@
     .footer-title{ font-weight: 1000; margin-bottom: 8px; }
     .footer-item{ margin: 6px 0; color:#111827; font-size: 14px; }
     .footer-item span{ color: var(--muted); font-weight: 600; }
+    .footer-item a{ color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
-    /* 最底下版权那一行 */
     .copyright{
       margin-top: 14px;
       text-align:center;
@@ -343,7 +333,7 @@
       font-weight: 600;
     }
 
-    /* ====== ⑩ 右下角悬浮WhatsApp按钮（WA圆形）====== */
+    /* WhatsApp floating */
     .whatsapp-fab{
       position: fixed;
       right: 18px;
@@ -367,11 +357,8 @@
 </head>
 
 <body>
-
-  <!-- ✅ 左右视觉填充层：方案一核心 -->
   <div class="edge-overlay" aria-hidden="true"></div>
 
-  <!-- ====== ⑤ 顶部栏（一直固定在顶部）====== -->
   <div class="topbar" role="navigation" aria-label="Main navigation">
     <div class="topbar-inner">
       <a class="brand" href="#">
@@ -380,13 +367,14 @@
       </a>
 
       <div class="nav-actions">
+        <a class="btn" href="#quienes-somos">Quiénes somos</a>
+        <a class="btn" href="#como-comprar">Cómo comprar</a>
         <a class="btn" href="#catalogo">Catálogo</a>
         <a class="btn primary" href="https://wa.me/525599998888" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
   </div>
 
-  <!-- ====== ⑥ 首屏Hero（大logo + 大标题 + 按钮）====== -->
   <header class="container" role="banner">
     <img class="hero-logo" src="assets/logo.png" alt="PartyBonita Logo">
     <h1>PartyBonita</h1>
@@ -400,7 +388,6 @@
     <div class="cta-note">Respuesta rápida · Cotización y disponibilidad</div>
   </header>
 
-  <!-- ====== ⑦ 主内容：分类卡片（Globos / Juguetes）====== -->
   <main class="container">
     <div class="cards" role="list">
       <a class="card" href="#catalogo" role="listitem" aria-label="Ver Globos">
@@ -414,7 +401,54 @@
       </a>
     </div>
 
-    <!-- ====== ⑧ Catálogo区块（PDF链接）====== -->
+    <!-- NEW: Quiénes somos -->
+    <section id="quienes-somos" class="info-section" aria-label="Quiénes somos">
+      <h2>Quiénes somos</h2>
+      <p>
+        Somos PartyBonita, un proveedor en CDMX de artículos para fiesta y regalos.
+        Nos enfocamos en atención rápida, disponibilidad real y cotización clara por WhatsApp.
+      </p>
+      <p>
+        Si buscas compras por volumen, también manejamos mayoreo (según producto y disponibilidad).
+      </p>
+
+      <div class="info-actions">
+        <a class="btn primary" href="https://wa.me/525599998888" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+        <a class="btn" href="#catalogo">Ver catálogo</a>
+      </div>
+    </section>
+
+    <!-- NEW: Cómo comprar -->
+    <section id="como-comprar" class="info-section" aria-label="Cómo comprar">
+      <h2>Cómo comprar</h2>
+      <p>Proceso simple (2–3 minutos):</p>
+
+      <ul class="steps">
+        <li class="step">
+          1) Elige productos
+          <span>Revisa el catálogo o mándanos foto/código por WhatsApp.</span>
+        </li>
+        <li class="step">
+          2) Cotizamos y confirmamos stock
+          <span>Te confirmamos precio, disponibilidad y tiempos de entrega.</span>
+        </li>
+        <li class="step">
+          3) Entrega o recolección
+          <span>Coordinamos envío en CDMX o retiro (si aplica).</span>
+        </li>
+      </ul>
+
+      <div class="info-actions">
+        <a class="btn primary" href="https://wa.me/525599998888" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+        <a class="btn" href="#catalogo">Abrir catálogo</a>
+
+        <!-- Google Maps clickable button (replace query with your real address later) -->
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Col.+Del+Valle,+Benito+Ju%C3%A1rez,+CDMX" target="_blank" rel="noopener">
+          Abrir Google Maps
+        </a>
+      </div>
+    </section>
+
     <section id="catalogo" class="catalog" aria-label="Catálogo">
       <h2>Catálogo</h2>
       <p>Descarga el PDF o pide la lista completa por WhatsApp.</p>
@@ -428,19 +462,32 @@
     </section>
   </main>
 
-  <!-- ====== ⑨ 底部Footer（联系方式、地址、邮箱）====== -->
   <footer role="contentinfo">
     <div class="footer-grid">
       <div>
         <div class="footer-title">Contacto</div>
+
         <div class="footer-item"><strong>Tel / WhatsApp:</strong> <span>+52 55 9999 8888</span></div>
         <div class="footer-item"><strong>Email:</strong> <span>contacto@partybonita.mx</span></div>
-        <div class="footer-item"><strong>Dirección:</strong> <span>Col. Del Valle, Benito Juárez, CDMX</span></div>
+
+        <!-- Address clickable to Google Maps -->
+        <div class="footer-item">
+          <strong>Dirección:</strong>
+          <span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Col.+Del+Valle,+Benito+Ju%C3%A1rez,+CDMX"
+               target="_blank" rel="noopener">
+              Col. Del Valle, Benito Juárez, CDMX
+            </a>
+          </span>
+        </div>
+
         <div class="footer-item"><strong>Horario:</strong> <span>Lun–Sáb 10:00–19:00</span></div>
       </div>
 
       <div>
         <div class="footer-title">Enlaces</div>
+        <div class="footer-item"><a href="#quienes-somos">Quiénes somos</a></div>
+        <div class="footer-item"><a href="#como-comprar">Cómo comprar</a></div>
         <div class="footer-item"><a href="#catalogo">Catálogo</a></div>
         <div class="footer-item"><a href="https://wa.me/525599998888" target="_blank" rel="noopener">WhatsApp</a></div>
       </div>
@@ -449,16 +496,15 @@
     <div class="copyright">© <span id="y"></span> PartyBonita</div>
   </footer>
 
-  <!-- ====== ⑩ 右下角悬浮按钮（WA）====== -->
   <a class="whatsapp-fab" href="https://wa.me/525599998888" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
 
-  <!-- ====== ⑪ 脚本：自动年份 + 自动“今日日期”====== -->
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
     const d = new Date();
     const pad = (n)=> String(n).padStart(2,"0");
-    document.getElementById("updated").textContent = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+    document.getElementById("updated").textContent =
+      `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
   </script>
 </body>
 </html>
